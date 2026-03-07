@@ -11,9 +11,7 @@ public class ToDo implements Serializable {
 	private Date fecha_limite;
 	private boolean completado;
 	
-	public ToDo() {
-		throw new UnsupportedOperationException("Clase aún no implementada.");
-	}
+	public ToDo() {}
 	public ToDo(int id, String nombre, String descripcion, Date fecha_limite, boolean completado) {
 		this.id=id;
 		this.nombre = nombre;
