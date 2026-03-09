@@ -8,7 +8,7 @@ on:
   push:
     branches:
       - stable
-
+      - main
 jobs:
   publish:
     runs-on: ubuntu-latest
