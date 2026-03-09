@@ -1,43 +1,22 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# Source - https://stackoverflow.com/a/70992127
+# Posted by ThrowsError, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-03-09, License - CC BY-SA 4.0
+
+name: Deploy Javadoc
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["stable"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    branches:
+      - stable
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy JavaDoc 🚀
+        uses: MathieuSoysal/Javadoc-publisher.yml@v2.3.0
         with:
-          # Upload entire repository
-          path: './src/main/java'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          javadoc-branch: javadoc
+          java-version: 17
+          target-folder: javadoc 
