@@ -2,7 +2,7 @@ package proyectoPunto4;
 
 import java.util.List;
 /**
- * Interfaz que representa a la base de datos
+ * Interfaz que representa a la base de datos CAMBIO DESDE STABLE
  */
 public interface DB {
 	/*
