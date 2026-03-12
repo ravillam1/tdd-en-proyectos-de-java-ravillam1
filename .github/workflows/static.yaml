@@ -30,7 +30,7 @@ jobs:
           with:
             distribution: 'zulu' # See 'Supported distributions' for available options
             java-version: '17'
-        - run: javadoc -sourcepath ./src -d ./docs -subpackages main.java
+        - run: javadoc -d docs -sourcepath src/main/java -subpackages proyectoPunto4:com.tt1.test
         - name: Deploy 🚀
           uses: JamesIves/github-pages-deploy-action@v4.2.3
           with:
