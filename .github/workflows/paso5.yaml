@@ -1,0 +1,35 @@
+#FUENTE: https://stackoverflow.com/questions/64708371/how-to-run-github-workflow-on-every-commit-of-a-push
+name: CI main to early
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-merge:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Tests with Maven
+        run: mvn test
+
+      - name: Auto-merge to early branch
+        if: success() 
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Forzamos la actualización de la rama 'early' con lo que hay en 'main'
+          git push origin main:early
